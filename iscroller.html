@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>iScroller Demo</title>
+</head>
+<body>
+<link rel="stylesheet" href="style.css" />
+<script type="text/html" id="template">
+    <ul class="container" id="container">
+    <div class="hidden title item" id="placeholder"></div>
+        {{ for (key in data) { }}
+            <li class="title item">{{=key}}</li>
+            {{if (data.hasOwnProperty(key)) {}}
+                {{ for (var i = 0; i < data[key].length; i++) { }}
+                    <li class="item">{{=data[key][i]}}</li>
+                {{ } }}
+            {{ } }}
+        {{ } }}
+    </ul>
+</script>
+<div id="result"></div>
+<script type="text/javascript" src="micro-mustache.js"></script>
+<script type="text/javascript" src="jquery-2.1.0.js"></script>
+<script type="text/javascript" src="iScroller.js"></script>
+<script type="text/javascript">
+var someData = {
+    "A": [ 'Aborted', 'Above All', 'Above the Law', 'Abrasive Wheels', 'Abraxas (группа)', 'Abruptum', 'Ad Libitum', 'Ad Libitum', 'Adam and the Ants', 'Addison Road'],
+    "B": ['Bad Lieutenant', 'Bad Manners', 'Bad Meets Evil', 'Bad Religion', 'Bad Sector', 'Badfinger', 'Bag Raiders', 'Baha Men', 'Bahroma', 'Bajofondo', 'The Bakerton Group', 'Bal-Sagoth'],
+    "C": ['Catapilla', 'Catatonia', 'CatCat', 'Catch 22', 'Catharsis', 'Cathedral (группа)', 'Cause 4 Concern', 'Cavalera Conspiracy', 'Cavo', 'CCCP Fedeli alla linea','Celebrate the Nun', 'Celesty', 'The Celibate Rifles', 'Celldweller'],
+    "D": ['Dazzle Dreams', 'DCMC', 'De Dannan', 'De Plattfööt', 'De Press', 'De Sangre', 'De Toppers', 'De-Phazz', 'De/Vision', 'Dead Boys', 'Dead by April', 'Dead by Sunrise', 'Dead Can Dance', 'Dead Infection', 'Dead Kennedys', 'Dead Letter Circus', 'Dead Man’s Bones', 'Dead Man’s Hill'],
+    "title 5": ['00003', '00002', '00008', '000604', '00005', '00006', '00007'],
+    "title 6": ['00003', '00002', '00008', '000604', '00005', '00006', '00007'],
+    "title 7": ['00003', '00002', '00008', '000604', '00005', '00006', '00007'],
+    "title 8": ['00003', '00002', '00008', '000604', '00005', '00006', '00007'],
+    "title 9": ['00003', '00002', '00008', '000604', '00005', '00006', '00007'],
+    "title 500": ['00001', '0046540', '000053', '00004', '00005', '00006', '00007'],
+    "title 1500": ['00001', '00789780', '000103', '00004', '00005', '00006', '00007'],
+    "title 10500": ['00001', '00456350', '000013', '00004', '00005', '00006', '00007'],
+    "title 10050": ['0023401', '000we00', '001003', '00004', '00005', '00006', '00007'],
+    "title 1005": ['0002301', '00000', '00003', '00004', '00005', '00006', '00007'],
+    "title 15": ['000322101', '00000', '000103', '00004', '00005', '00006', '00007'],
+    "title 150": ['0001101', '001000', '000103', '00004', '00005', '00006', '00007'],
+};
+
+document.querySelector("#result").innerHTML = tmpl("template", {data: someData});
+iScroller({resultSelector: "#result", containerSelector: '#container', elementListSelector : '.title', placeholderSelector: '#placeholder', classNameToFix : 'fixed', classNameToHide: 'hidden'});
+</script>
+</body>
+</html>
